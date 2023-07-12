@@ -2,8 +2,10 @@
 A tool for enriching the output of nvidia-smi.
 
 ## Usage
+
+    pip install termcolor
     chmod a+x nvidia-htop.py
-    nvidia-htop.py [-l [length]] [-u [username]]
+    ./nvidia-htop.py [-l [length]] [-u [username]]
       print GPU utilization with usernames and CPU stats for each GPU-utilizing process
 
       -l|--command-length [length]     Print longer part of the commandline. If `length'
@@ -13,13 +15,13 @@ A tool for enriching the output of nvidia-smi.
                                        moderately used GPU, red - fully used GPU)
       -u|--user                        Name of user to summarize
 
-Note: for backward compatibility, `nvidia-smi | nvidia-htop.py [-l [length]] [-u [username]]` is also supported.
+Note: for backward compatibility, `nvidia-smi | ./nvidia-htop.py [-l [length]] [-u [username]]` is also supported.
 
 Note: running inside a container (docker, singularity, ...), `nvidia-smi` can only see processes running in the container.
 
 ## Example output
 ```
-rnd@rnd:~$ nvidia-htop.py -l
+rnd@rnd:~$ ./nvidia-htop.py -l
 Wed Jul 12 10:41:16 2023
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 470.57.02    Driver Version: 470.57.02    CUDA Version: 11.4     |
@@ -62,7 +64,7 @@ Wed Jul 12 10:41:16 2023
 ```
 
 ```
-rnd@rnd:~$ nvidia-htop.py -l -u root
+rnd@rnd:~$ ./nvidia-htop.py -l -u root
 Wed Jul 12 10:51:06 2023
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 470.57.02    Driver Version: 470.57.02    CUDA Version: 11.4     |
