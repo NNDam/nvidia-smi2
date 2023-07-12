@@ -159,10 +159,6 @@ if __name__ == '__main__':
     # Get nvidia-smi stdout
     lines = get_nvidia_smi_stdout()
 
-    # Print normal nvidia-smi stdout
-    for line in lines:
-        print(line)
-
     # Get line to print
     lines_to_print, ps_start_idx, is_new_format = get_line_to_print(lines)
     
