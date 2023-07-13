@@ -6,5 +6,5 @@ setup(
     install_requires=[
         'termcolor',
     ],
-    scripts=['bin/nvidia-smi2']
+    scripts=['src/nvidia-smi2']
 )
