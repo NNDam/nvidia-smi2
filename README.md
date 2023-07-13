@@ -3,6 +3,12 @@ A tool for enriching the output of nvidia-smi.
 
 ## Usage
 
+Install with pip
+
+    pip install nvidia-smi2
+
+Or run from src
+
     pip install termcolor
     chmod a+x nvidia-htop.py
     ./nvidia-htop.py [-l [length]] [-u [username]]
