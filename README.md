@@ -6,9 +6,11 @@ A tool for enriching the output of nvidia-smi.
 
 ## Usage
 
-Install and run with pip
+Install
 
     pip install nvidia-smi2
+    
+Run
 
     nvidia-smi2 [-l [length]] [-u [username]]
       print GPU utilization with usernames and CPU stats for each GPU-utilizing process
@@ -40,7 +42,7 @@ Note: running inside a container (docker, singularity, ...), `nvidia-smi` can on
 
 ## Example output
 ```
-rnd@rnd:~$ ./nvidia-htop.py -l
+rnd@rnd:~$ nvidia-smi2 -l
 Wed Jul 12 10:41:16 2023
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 470.57.02    Driver Version: 470.57.02    CUDA Version: 11.4     |
@@ -83,7 +85,7 @@ Wed Jul 12 10:41:16 2023
 ```
 
 ```
-rnd@rnd:~$ ./nvidia-htop.py -l -u root
+rnd@rnd:~$ nvidia-smi2 -l -u root
 Wed Jul 12 10:51:06 2023
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 470.57.02    Driver Version: 470.57.02    CUDA Version: 11.4     |
