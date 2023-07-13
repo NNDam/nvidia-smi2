@@ -1,5 +1,8 @@
-# nvidia-htop2
+# nvidia-smi2
+
 A tool for enriching the output of nvidia-smi.
+
+<a href="https://pypi.org/project/nvidia-smi2/"><img alt="Alt text" src="https://img.shields.io/badge/PyPI-3775A9.svg?style=for-the-badge&logo=PyPI&logoColor=white"/></a>
 
 ## Usage
 
