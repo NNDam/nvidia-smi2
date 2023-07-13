@@ -3,9 +3,19 @@ A tool for enriching the output of nvidia-smi.
 
 ## Usage
 
-Install with pip
+Install and run with pip
 
     pip install nvidia-smi2
+
+    nvidia-smi2 [-l [length]] [-u [username]]
+      print GPU utilization with usernames and CPU stats for each GPU-utilizing process
+
+      -l|--command-length [length]     Print longer part of the commandline. If `length'
+                                       is provided, use it as the commandline length,
+                                       otherwise print first 100 characters.
+      -c|--color                       Colorize the output (green - free GPU, yellow -
+                                       moderately used GPU, red - fully used GPU)
+      -u|--user                        Name of user to summarize
 
 Or run from src
 
