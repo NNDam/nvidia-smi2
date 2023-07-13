@@ -1,7 +1,26 @@
-# nvidia-htop2
+# nvidia-smi2
+
 A tool for enriching the output of nvidia-smi.
 
+<a href="https://pypi.org/project/nvidia-smi2/"><img alt="Alt text" src="https://img.shields.io/badge/PyPI-3775A9.svg?style=for-the-badge&logo=PyPI&logoColor=white"/></a>
+
 ## Usage
+
+Install and run with pip
+
+    pip install nvidia-smi2
+
+    nvidia-smi2 [-l [length]] [-u [username]]
+      print GPU utilization with usernames and CPU stats for each GPU-utilizing process
+
+      -l|--command-length [length]     Print longer part of the commandline. If `length'
+                                       is provided, use it as the commandline length,
+                                       otherwise print first 100 characters.
+      -c|--color                       Colorize the output (green - free GPU, yellow -
+                                       moderately used GPU, red - fully used GPU)
+      -u|--user                        Name of user to summarize
+
+Or run from src
 
     pip install termcolor
     chmod a+x nvidia-htop.py
