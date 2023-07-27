@@ -154,7 +154,7 @@ def main():
     parser.add_argument('-L', '--command-length', default=20, const=100, type=int, nargs='?')
     parser.add_argument('-c', '--color', action='store_true')
     parser.add_argument('-u', '--user', type = str, default = '', help = 'user to analyst instead of all user')
-    parser.add_argument('-l', '--loop', default=1, type=float)
+    parser.add_argument('-l', '--loop', default=None, type=float)
 
     args = parser.parse_args()
 
@@ -240,6 +240,9 @@ def main():
 
             print("+" + ("-" * (len(line) - 2)) + "+")
 
-            time.sleep(args.loop)
+            if args.loop is not None:
+                time.sleep(args.loop)
+            else:
+                break
         except KeyboardInterrupt:
             exit(0)
