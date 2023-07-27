@@ -146,7 +146,7 @@ def get_line_to_print(lines):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-l', '--command-length', default=20, const=100, type=int, nargs='?')
+    parser.add_argument('-L', '--command-length', default=20, const=100, type=int, nargs='?')
     parser.add_argument('-c', '--color', action='store_true')
     parser.add_argument('-u', '--user', type = str, default = '', help = 'user to analyst instead of all user')
 

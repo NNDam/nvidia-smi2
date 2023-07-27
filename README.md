@@ -12,37 +12,39 @@ Install
     
 Run
 
-    nvidia-smi2 [-l [length]] [-u [username]]
+    nvidia-smi2 [-L [length]] [-u [username]]
       print GPU utilization with usernames and CPU stats for each GPU-utilizing process
 
-      -l|--command-length [length]     Print longer part of the commandline. If `length'
+      -L|--command-length [length]     Print longer part of the commandline. If `length'
                                        is provided, use it as the commandline length,
                                        otherwise print first 100 characters.
       -c|--color                       Colorize the output (green - free GPU, yellow -
                                        moderately used GPU, red - fully used GPU)
       -u|--user                        Name of user to summarize
+      -l|--loop                        Loop nvidia-smi2 after a period of time
 
 Or run from src
 
     pip install termcolor
     chmod a+x nvidia-htop.py
-    ./nvidia-htop.py [-l [length]] [-u [username]]
+    ./nvidia-htop.py [-L [length]] [-u [username]]
       print GPU utilization with usernames and CPU stats for each GPU-utilizing process
 
-      -l|--command-length [length]     Print longer part of the commandline. If `length'
+      -L|--command-length [length]     Print longer part of the commandline. If `length'
                                        is provided, use it as the commandline length,
                                        otherwise print first 100 characters.
       -c|--color                       Colorize the output (green - free GPU, yellow -
                                        moderately used GPU, red - fully used GPU)
       -u|--user                        Name of user to summarize
+      -l|--loop                        Loop nvidia-smi2 after a period of time
 
-Note: for backward compatibility, `nvidia-smi | ./nvidia-htop.py [-l [length]] [-u [username]]` is also supported.
+Note: for backward compatibility, `nvidia-smi | ./nvidia-htop.py [-L [length]] [-u [username]]` is also supported.
 
 Note: running inside a container (docker, singularity, ...), `nvidia-smi` can only see processes running in the container.
 
 ## Example output
 ```
-rnd@rnd:~$ nvidia-smi2 -l
+rnd@rnd:~$ nvidia-smi2 -L
 Wed Jul 12 10:41:16 2023
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 470.57.02    Driver Version: 470.57.02    CUDA Version: 11.4     |
@@ -85,7 +87,7 @@ Wed Jul 12 10:41:16 2023
 ```
 
 ```
-rnd@rnd:~$ nvidia-smi2 -l -u root
+rnd@rnd:~$ nvidia-smi2 -L -u root
 Wed Jul 12 10:51:06 2023
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 470.57.02    Driver Version: 470.57.02    CUDA Version: 11.4     |
