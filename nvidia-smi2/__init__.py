@@ -145,17 +145,7 @@ def get_line_to_print(lines):
     return lines_to_print, ps_start_idx, is_new_format
 
 
-def main():
-    import argparse
-    import sys
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-l', '--command-length', default=20, const=100, type=int, nargs='?')
-    parser.add_argument('-c', '--color', action='store_true')
-    parser.add_argument('-u', '--user', type = str, default = '', help = 'user to analyst instead of all user')
-
-    args = parser.parse_args()
-
+def run(args):
     # parse the command length argument
     command_length = args.command_length
     color = args.color
@@ -170,8 +160,12 @@ def main():
     if color:
         lines_to_print = colorize(lines_to_print)
 
+    total_gpu_vram = 0
+
     # we print all but the last line which is the +---+ separator
     for line in lines_to_print[:-1]:
+        if "MiB" in line:
+            total_gpu_vram += int(line.split()[10].replace("MiB", ""))
         print(line)
 
     no_running_process = "No running processes found"
@@ -217,12 +211,15 @@ def main():
     print("+" + ("-" * (len(line) - 2)) + "+")
 
     # Print user detail
-    sum_format = ("|  %8s   %14s %11s %11s  |")
+    sum_format = ("|  %8s   %14s %10s %11s %11s  |")
     line = sum_format % (
-        "USER", "TOTAL GPU MEM", "TOTAL %CPU", "TOTAL %MEM"
+        "USER", "TOTAL GPU MEM", " ", "TOTAL %CPU", "TOTAL %MEM"
     )
     print(line)
     print("+" + ("-" * (len(line) - 2)) + "+")
+    total_gpu_mem = 0
+    total_cpu = 0
+    total_mem = 0
     for user in user_detail:
         if len(args.user) > 0:
             if user[:7] != args.user[:7]:
@@ -230,8 +227,33 @@ def main():
         print(sum_format % (
             user,
             str(user_detail[user]["total_gpu_mem"]) + "MiB",
+            " ",
             str(round(user_detail[user]["total_cpu"], 1)),
             str(round(user_detail[user]["total_mem"], 1))
         ))
+        total_gpu_mem += user_detail[user]["total_gpu_mem"]
+        total_cpu += round(user_detail[user]["total_cpu"], 1)
+        total_mem += round(user_detail[user]["total_mem"], 1)
 
+    print("|" + ("-" * (len(line) - 2)) + "|")
+    all_user_sum_format = ("| %8s   %14s %10s %11s %11s  |")
+    print(all_user_sum_format % ("all-users", 
+                                       str(total_gpu_mem) + "MiB", 
+                                       "/ " + str(total_gpu_vram) + "MiB", 
+                                       str(round(total_cpu, 1)), 
+                                       str(round(total_mem, 1))))
     print("+" + ("-" * (len(line) - 2)) + "+")
+
+
+def main():
+    import argparse
+    import sys
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-l', '--command-length', default=20, const=100, type=int, nargs='?')
+    parser.add_argument('-c', '--color', action='store_true')
+    parser.add_argument('-u', '--user', type = str, default = '', help = 'user to analyst instead of all user')
+
+    args = parser.parse_args()
+
+    run(args)
