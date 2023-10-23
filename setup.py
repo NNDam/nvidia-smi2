@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='nvidia-smi2',
-    version='0.0.2-3',
+    version='0.0.2-5',
     install_requires=[
         'termcolor',
     ],
